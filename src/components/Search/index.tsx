@@ -10,8 +10,19 @@ import {
   MenuDivider,
   Input,
 } from "@chakra-ui/react";
+import { ProductDataType } from "@/types";
+import { useState } from "react";
 
-export default function Search() {
+export default async function Search({
+  productData,
+}: {
+  productData: ProductDataType[];
+}) {
+  const [products, setProducts] = useState<ProductDataType[]>(productData);
+  const [searchedWord, setSearchedWord] = useState<string>("");
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchedWord(e.target.value);
+  };
   return (
     <div>
       <Menu>
@@ -27,7 +38,17 @@ export default function Search() {
               placeholder="search here...."
               className="p-2"
               onClick={(e) => e.stopPropagation()}
+              onChange={(e) => handleChange(e)}
             />
+          </MenuItem>
+          <MenuItem>
+            {products && (
+              <>
+                {products.filter((product) => (
+                  <div>{product.title}</div>
+                ))}
+              </>
+            )}
           </MenuItem>
         </MenuList>
       </Menu>
