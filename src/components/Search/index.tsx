@@ -1,19 +1,10 @@
 import { FaSearch } from "react-icons/fa";
-import {
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
-  Input,
-} from "@chakra-ui/react";
+import { Menu, MenuButton, MenuList, MenuItem, Input } from "@chakra-ui/react";
 import { ProductDataType } from "@/types";
 import { useState } from "react";
+import Image from "next/image";
 
-export default async function Search({
+export default function Search({
   productData,
 }: {
   productData: ProductDataType[];
@@ -23,6 +14,7 @@ export default async function Search({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchedWord(e.target.value);
   };
+
   return (
     <div>
       <Menu>
@@ -35,20 +27,34 @@ export default async function Search({
         <MenuList>
           <MenuItem closeOnSelect={false}>
             <Input
-              placeholder="search here...."
+              placeholder="Search your product"
               className="p-2"
               onClick={(e) => e.stopPropagation()}
               onChange={(e) => handleChange(e)}
             />
           </MenuItem>
           <MenuItem>
-            {products && (
-              <>
-                {products.filter((product) => (
-                  <div>{product.title}</div>
-                ))}
-              </>
-            )}
+            <div className="flex flex-col h-80 overflow-scroll overflow-x-hidden">
+              {searchedWord &&
+                products
+                  .filter((product) =>
+                    product.title.toLowerCase().includes(searchedWord)
+                  )
+                  .map((product) => (
+                    <div className="w-60 flex justify-between items-center hover:bg-slate-400 transition-all">
+                      <div>
+                        <Image
+                          width={200}
+                          height={200}
+                          alt=""
+                          src={product.image}
+                          className="min-w-20 max-w-20 w-20 h-20 object-cover"
+                        />
+                      </div>
+                      <div className="truncate">{product.title}</div>
+                    </div>
+                  ))}
+            </div>
           </MenuItem>
         </MenuList>
       </Menu>
