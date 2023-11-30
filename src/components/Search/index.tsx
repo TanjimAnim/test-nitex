@@ -3,6 +3,7 @@ import { Menu, MenuButton, MenuList, MenuItem, Input } from "@chakra-ui/react";
 import { ProductDataType } from "@/types";
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Search({
   productData,
@@ -41,7 +42,10 @@ export default function Search({
                     product.title.toLowerCase().includes(searchedWord)
                   )
                   .map((product) => (
-                    <div className="w-60 flex justify-between items-center hover:bg-slate-400 transition-all">
+                    <Link
+                      href="/dashboard/products"
+                      className="w-60 flex justify-between items-center hover:bg-slate-400 transition-all"
+                    >
                       <div>
                         <Image
                           width={200}
@@ -52,7 +56,7 @@ export default function Search({
                         />
                       </div>
                       <div className="truncate">{product.title}</div>
-                    </div>
+                    </Link>
                   ))}
             </div>
           </MenuItem>

@@ -9,10 +9,10 @@ export default function DesktopNavbar({
 }) {
   return (
     <div className="md:grid hidden grid-cols-5 mx-auto text-center cursor-pointer">
-      <div>Home</div>
-      <Link href="/products">All Products</Link>
-      <div>Contact Us</div>
-      <div>Login/Register</div>
+      <Link href="/">Home</Link>
+      <Link href="/dashboard/products">All Products</Link>
+      <Link href="/dashboard/contact">Contact Us</Link>
+      <Link href="/login">Login/Register</Link>
       <Search productData={productData} />
     </div>
   );
