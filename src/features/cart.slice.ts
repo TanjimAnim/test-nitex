@@ -11,7 +11,7 @@ const initialState: CartState = {
       (typeof window !== "undefined" &&
         localStorage.getItem("shopping-cart")) ||
         "{}"
-    ).item || [],
+    ).items || [],
 };
 
 export const shoppingCartSlice = createSlice({
