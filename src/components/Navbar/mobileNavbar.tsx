@@ -26,7 +26,7 @@ export default function MobileNavbar({
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef(null);
   return (
-    <div className="md:hidden flex justify-between items-center">
+    <div className="md:hidden flex justify-between items-center p-8">
       <button ref={btnRef} onClick={onOpen}>
         <RxHamburgerMenu />
       </button>
@@ -47,7 +47,7 @@ export default function MobileNavbar({
           <DrawerCloseButton />
           <DrawerHeader>!Daraz</DrawerHeader>
 
-          <DrawerBody className="flex flex-col text-start">
+          <DrawerBody className="flex flex-col text-start gap-4">
             <Link href="/">Home</Link>
             <Link href="/dashboard/products">All Products</Link>
             <Link href="/dashboard/contact">Contact Us</Link>

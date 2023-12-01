@@ -6,6 +6,8 @@ export interface ProductDataType {
   category: Category;
   image: string;
   rating: Rating;
+  quantity: number;
+  total_price: number;
 }
 
 export enum Category {

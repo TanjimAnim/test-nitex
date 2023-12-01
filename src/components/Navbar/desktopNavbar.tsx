@@ -11,7 +11,7 @@ export default function DesktopNavbar({
   user?: SessionData;
 }) {
   return (
-    <div className="md:grid hidden grid-cols-5 mx-auto text-center cursor-pointer">
+    <div className="md:grid hidden grid-cols-5 mx-auto text-center cursor-pointer p-10">
       <Link href="/">Home</Link>
       <Link href="/dashboard/products">All Products</Link>
       <Link href="/dashboard/contact">Contact Us</Link>

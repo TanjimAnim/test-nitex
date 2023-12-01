@@ -1,3 +1,12 @@
+import ProductsPageComponent from "@/components/Product/productPage";
+import { getApiData } from "@/controllers/getdata";
+import { ProductDataType } from "@/types";
+
 export default async function ProductsPage() {
-    return <h1>Welcome to Products Page</h1>
+  const productData: ProductDataType[] = await getApiData("products");
+  return (
+    <>
+      <ProductsPageComponent productData={productData} />
+    </>
+  );
 }
