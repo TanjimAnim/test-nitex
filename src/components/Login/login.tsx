@@ -1,5 +1,6 @@
 "use client";
 import login from "@/controllers/login";
+import { METHODS } from "http";
 import { FormEvent, useState } from "react";
 
 export default function Login() {
@@ -21,7 +22,9 @@ export default function Login() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const result = await login();
+      const result = await fetch("/api/login", {
+        method: "POST",
+      });
       console.log("Login successful:", result);
     } catch (error) {
       if (error instanceof Error && error.message) {
