@@ -28,7 +28,7 @@ export default function Login() {
         method: "POST",
         body: input.username,
       });
-      router.push("/dashboard/products");
+
       toast({
         title: "Login Successful",
         description: "",
@@ -37,6 +37,7 @@ export default function Login() {
         position: "top",
         isClosable: true,
       });
+      window.location.href = "/dashboard/products";
     } catch (error) {
       if (error instanceof Error && error.message) {
         console.error("Login failed:", error.message);

@@ -1,7 +1,7 @@
 **Ecommerce App**
 
 An Ecommerce app made with NextJS. <br>
-
+Live Link : https://test-nitex.vercel.app/
 **Technology**
 This project is made with
 
