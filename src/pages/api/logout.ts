@@ -1,15 +1,17 @@
-import login from "@/controllers/login";
-import { sessionOption } from "@/libs/session";
-import { SessionData } from "@/types";
-import { getIronSession } from "iron-session";
+// pages/api/logout.ts
 
-export default async function Login(req: any, res: any) {
+import { NextApiRequest, NextApiResponse } from "next";
+import { sessionOption } from "../../libs/session";
+import { getIronSession } from "iron-session";
+import { SessionData } from "@/types";
+
+export default async function Logout(req: any, res: any) {
   try {
     const session = await getIronSession<SessionData>(req, res, sessionOption);
-    const data = await login();
+
     session.username = req.body;
-    await session.save();
-    res.status(200).send({ ok: true, ...data });
+    session.destroy();
+    res.status(200).send({ ok: true });
   } catch (error: any) {
     if (error.response && error.response.data) {
       // If error has a response and data property, send that data

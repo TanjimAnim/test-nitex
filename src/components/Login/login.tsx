@@ -1,10 +1,12 @@
 "use client";
-import login from "@/controllers/login";
-import { METHODS } from "http";
+import { useToast } from "@chakra-ui/react";
+import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
 export default function Login() {
   const inputStyle = "border-1 border-black p-2";
+  const toast = useToast();
+  const router = useRouter();
   const [input, setInput] = useState({
     username: "",
     password: "",
@@ -24,12 +26,35 @@ export default function Login() {
     try {
       const result = await fetch("/api/login", {
         method: "POST",
+        body: input.username,
       });
-      console.log("Login successful:", result);
+      router.push("/dashboard/products");
+      toast({
+        title: "Login Successful",
+        description: "",
+        status: "success",
+        duration: 5000,
+        position: "top",
+        isClosable: true,
+      });
     } catch (error) {
       if (error instanceof Error && error.message) {
         console.error("Login failed:", error.message);
+        toast({
+          title: "Login Unsuccessful",
+          description: error.message ?? "",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
       } else {
+        toast({
+          title: "Login Unsuccessful",
+          description: "An unknown error occurred during login",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
         console.error("An unknown error occurred during login");
       }
     }
