@@ -15,6 +15,8 @@ import { ProductDataType, SessionData } from "@/types";
 import Link from "next/link";
 import Search from "../Search";
 import ProfileComponent from "../Profile";
+import { useAppSelector } from "@/hooks";
+import { FaShoppingCart } from "react-icons/fa";
 
 export default function MobileNavbar({
   user,
@@ -25,12 +27,23 @@ export default function MobileNavbar({
 }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef(null);
+  const quantity = useAppSelector(
+    (state) => state.shoppingCartSlice.items
+  ).length;
+  const notificationStyle =
+    "absolute rounded-full w-[14px] flex items-center justify-center bg-[#55FFFF] top-[-8px] left-[14px] text-xs font-medium text-[black]";
   return (
     <div className="md:hidden flex justify-between items-center p-8">
       <button ref={btnRef} onClick={onOpen}>
         <RxHamburgerMenu />
       </button>
       <div className="flex items-center justify-between gap-2">
+        {quantity > 0 && (
+          <Link href="/dashboard/checkout" className="relative">
+            <FaShoppingCart fontSize="20px" />
+            <div className={notificationStyle}>{quantity}</div>
+          </Link>
+        )}
         <Search productData={productData} />
         {user && <ProfileComponent user={user} />}
         {!user && <Link href="/login">Login/Register</Link>}

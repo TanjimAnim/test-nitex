@@ -36,9 +36,8 @@ export const shoppingCartSlice = createSlice({
       } else {
         state.items.push({
           ...action.payload,
-          quantity: 1,
-          quantity_available: action.payload.quantity_available - 1,
-          total_price: action.payload.price + action.payload.vat,
+          quantity: action.payload.quantity,
+          total_price: action.payload.price + action.payload.quantity,
         });
       }
     },

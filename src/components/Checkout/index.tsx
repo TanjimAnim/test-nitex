@@ -70,6 +70,13 @@ export default function CheckoutPageComponent() {
           </div>
         </div>
       )}
+      {cartItems.length === 0 && (
+        <div className="flex justify-center items-center min-h-[80vh]">
+          <h1 className="text-[56px] font-bold">
+            There are no Items in your Cart!
+          </h1>
+        </div>
+      )}
     </>
   );
 }
