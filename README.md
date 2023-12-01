@@ -8,8 +8,9 @@ This project is made with
 1. NextJS 14
 2. ChakraUI (component library)
 3. React-Redux
-   **Setup**
-   To run this project,
+
+**Setup**
+To run this project,
 
 4. Download the files.
 5. Open it on VSCode(or any other editor).
