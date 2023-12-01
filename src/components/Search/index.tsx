@@ -45,6 +45,7 @@ export default function Search({
                     <Link
                       href="/dashboard/products"
                       className="w-60 flex justify-between items-center hover:bg-slate-400 transition-all"
+                      key={product.id}
                     >
                       <div>
                         <Image

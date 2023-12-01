@@ -19,7 +19,6 @@ export const shoppingCartSlice = createSlice({
   initialState: initialState,
   reducers: {
     addToCart: (state, action) => {
-      console.log(action.payload);
       const itemIndex = state.items.findIndex(
         (item) => item.id === action.payload.id
       );
@@ -61,7 +60,6 @@ export const shoppingCartSlice = createSlice({
       };
     },
     removeCart: (state, action) => {
-      console.log(action);
       return {
         ...state,
         items: state.items.filter((elem) => elem.id !== action.payload),

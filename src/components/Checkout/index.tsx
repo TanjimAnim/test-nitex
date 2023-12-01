@@ -7,12 +7,16 @@ import Link from "next/link";
 import { IoMdClose } from "react-icons/io";
 import { useAppDispatch } from "@/hooks";
 import { removeCart } from "@/features/cart.slice";
+import { useRouter } from "next/navigation";
+
 export default function CheckoutPageComponent() {
   const cartItems = useAppSelector((state) => state.shoppingCartSlice.items);
   const dispatch = useAppDispatch();
   const removeItemFromCart = (id: number) => {
     dispatch(removeCart(id));
   };
+  const router = useRouter();
+
   return (
     <>
       {cartItems.length > 0 && (
@@ -61,12 +65,12 @@ export default function CheckoutPageComponent() {
             </table>
           </div>
           <div className="flex justify-end">
-            <Link
+            <div
               className="p-4 mr-24 mt-9 mb-3 bg-black text-white rounded-md hover:bg-white hover:text-black"
-              href="/dashboard/payment"
+              onClick={(e) => (window.location.href = "/dashboard/payment")}
             >
               PROCEED TO PAYMENT
-            </Link>
+            </div>
           </div>
         </div>
       )}
